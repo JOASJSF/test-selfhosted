@@ -11,10 +11,10 @@ COPY package.json bun.lockb ./
 RUN bun install --frozen-lockfile
 
 # Copiar archivos necesarios para la compilación de Next.js
-COPY app ./app
+COPY src/app ./src/app
 COPY public ./public
-COPY components ./components
-COPY lib ./lib
+COPY src/components ./src/components
+COPY src/lib ./src/lib
 COPY next.config.ts .
 COPY prisma ./prisma
 COPY components.json .
@@ -29,10 +29,6 @@ ARG BETTER_AUTH_SECRET
 ENV BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}
 ARG BETTER_AUTH_URL
 ENV BETTER_AUTH_URL=${BETTER_AUTH_URL}
-#ARG BASIC_AUTH_USER
-#ENV BASIC_AUTH_USER=${BASIC_AUTH_USER}
-#ARG BASIC_AUTH_PASSWORD
-#ENV BASIC_AUTH_PASSWORD=${BASIC_AUTH_PASSWORD}
 
 # Compilar el proyecto con Bun
 RUN bun run build
@@ -58,15 +54,12 @@ ARG BETTER_AUTH_SECRET
 ENV BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}
 ARG BETTER_AUTH_URL
 ENV BETTER_AUTH_URL=${BETTER_AUTH_URL}
-#ARG BASIC_AUTH_USER
-#ENV BASIC_AUTH_USER=${BASIC_AUTH_USER}
-#ARG BASIC_AUTH_PASSWORD
-#ENV BASIC_AUTH_PASSWORD=${BASIC_AUTH_PASSWORD}
 
 EXPOSE 3000
 
 ENV PORT 3000
 CMD ["bun", "run", "server.js"]
+
 
 
 
