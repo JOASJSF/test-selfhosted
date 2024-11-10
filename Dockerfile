@@ -8,7 +8,7 @@ WORKDIR /app
 
 # Instalar dependencias usando Bun
 COPY package.json bun.lockb ./
-RUN bun install --frozen-lockfile
+RUN bun install
 
 # Copiar archivos necesarios para la compilación de Next.js
 COPY src/app ./src/app
